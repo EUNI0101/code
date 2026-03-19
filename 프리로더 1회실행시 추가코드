@@ -1,0 +1,15 @@
+if (!isHome) {
+  loader.parentNode.removeChild(loader);
+  return;
+}
+
+/* 👇 여기에 추가 */
+if (sessionStorage.getItem("gdPreloaderShown")) {
+  loader.parentNode.removeChild(loader);
+  return;
+}
+
+sessionStorage.setItem("gdPreloaderShown", "true");
+
+/* 기존 코드 그대로 */
+loader.style.display = "flex";
