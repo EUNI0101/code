@@ -98,7 +98,7 @@
   var isHome =
     path === '/' ||
     path === '/Home' ||
-    path === '/Home.html' ||;
+    path === '/Home.html';
 
   var target = document.getElementById("gdPreloaderTyping");
   var loader = document.getElementById("gd-preloader");
