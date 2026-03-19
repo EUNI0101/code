@@ -1,0 +1,90 @@
+<style>
+#gd-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+#gd-preloader.is-hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 배경 */
+.gd-preloader-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.05);
+  transition: transform 1.2s ease, opacity 1s ease;
+}
+
+#gd-preloader.is-hide .gd-preloader-bg {
+  transform: scale(1);
+  opacity: 0.95;
+}
+
+/* 오버레이 */
+.gd-preloader-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+}
+</style>
+
+<script>
+(function () {
+
+  /* ===== 홈 체크 ===== */
+  var path = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  var isHome =
+    path === '/' ||
+    path === '/Home' ||
+    path === '/Home.html';
+
+  if (!isHome) return;
+
+  /* ===== 디바이스별 이미지 ===== */
+  var pcImage = "https://cdn.imweb.me/upload/S2025081109ec50d55bb72/b3d5be2e64554.png";
+  var moImage = "https://cdn.imweb.me/upload/S2025081109ec50d55bb72/d97ca80bdddbc.png";
+
+  var isMobile = window.innerWidth <= 768;
+
+  var selectedImage = isMobile ? moImage : pcImage;
+
+  /* ===== 프리로더 생성 ===== */
+  var loader = document.createElement('div');
+  loader.id = 'gd-preloader';
+
+  loader.innerHTML =
+    '<div class="gd-preloader-bg"></div>' +
+    '<div class="gd-preloader-overlay"></div>';
+
+  document.body.appendChild(loader);
+
+  /* 배경 적용 */
+  var bg = loader.querySelector('.gd-preloader-bg');
+  bg.style.backgroundImage = "url('" + selectedImage + "')";
+
+  /* ===== 타이밍 ===== */
+  var showTime = 2000;
+  var fadeTime = 1000;
+
+  setTimeout(function () {
+    loader.classList.add('is-hide');
+
+    setTimeout(function () {
+      if (loader && loader.parentNode) {
+        loader.parentNode.removeChild(loader);
+      }
+    }, fadeTime);
+  }, showTime);
+
+})();
+</script>
