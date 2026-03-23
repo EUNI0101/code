@@ -1,0 +1,177 @@
+<style>
+#gd-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+  --gd-pull-x: 0px;
+  --gd-pull-y: 0px;
+  --gd-pull-scale: 0.22;
+}
+
+/* 전체 스테이지 */
+.gd-preloader-stage{
+  position:absolute;
+  inset:0;
+  transform: translate3d(0,0,0) scale(1);
+  transform-origin:center center;
+  transition:
+    transform 1.05s cubic-bezier(.18,.88,.22,1),
+    opacity 0.8s ease,
+    filter 0.8s ease;
+  will-change: transform, opacity, filter;
+}
+
+/* 빨려들어가는 상태 */
+#gd-preloader.is-pull .gd-preloader-stage{
+  transform:
+    translate3d(var(--gd-pull-x), var(--gd-pull-y), 0)
+    scale(var(--gd-pull-scale));
+  opacity: 0.16;
+  filter: blur(2.2px);
+}
+
+/* 배경 */
+.gd-preloader-bg {
+  position: absolute;
+  inset: -8%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.08);
+  transition:
+    transform 1.05s cubic-bezier(.18,.88,.22,1),
+    opacity 0.75s ease;
+  will-change: transform, opacity;
+}
+
+/* 빨려들 때 배경도 약간 더 조여짐 */
+#gd-preloader.is-pull .gd-preloader-bg {
+  transform: scale(1.02);
+  opacity: 0.98;
+}
+
+/* 오버레이 */
+.gd-preloader-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.16);
+  transition: opacity 0.75s ease;
+}
+
+#gd-preloader.is-pull .gd-preloader-overlay {
+  opacity: 0.05;
+}
+
+/* 최종 숨김 */
+#gd-preloader.is-hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+</style>
+
+<script>
+(function () {
+  var path = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  var isHome =
+    path === '/' ||
+    path === '/Home' ||
+    path === '/Home.html';
+
+  if (!isHome) return;
+
+  var pcImage = "https://cdn.imweb.me/upload/S2025081109ec50d55bb72/b3d5be2e64554.png";
+  var moImage = "https://cdn.imweb.me/upload/S2025081109ec50d55bb72/d97ca80bdddbc.png";
+
+  var isMobile = window.innerWidth <= 768;
+  var selectedImage = isMobile ? moImage : pcImage;
+
+  var loader = document.createElement('div');
+  loader.id = 'gd-preloader';
+  loader.innerHTML =
+    '<div class="gd-preloader-stage" id="gdPreloaderStage">' +
+      '<div class="gd-preloader-bg"></div>' +
+      '<div class="gd-preloader-overlay"></div>' +
+    '</div>';
+
+  document.body.appendChild(loader);
+
+  var bg = loader.querySelector('.gd-preloader-bg');
+  var stage = document.getElementById('gdPreloaderStage');
+
+  if (bg) {
+    bg.style.backgroundImage = "url('" + selectedImage + "')";
+  }
+
+  function getFlyTarget() {
+    return document.querySelector(".im-floating-quick .fq-ai");
+  }
+
+  function setPullMotion() {
+    var target = getFlyTarget();
+    if (!target || !stage) return false;
+
+    var stageRect = stage.getBoundingClientRect();
+    var targetRect = target.getBoundingClientRect();
+
+    var stageCenterX = stageRect.left + stageRect.width / 2;
+    var stageCenterY = stageRect.top + stageRect.height / 2;
+
+    var targetCenterX = targetRect.left + targetRect.width / 2;
+    var targetCenterY = targetRect.top + targetRect.height / 2;
+
+    var deltaX = targetCenterX - stageCenterX;
+    var deltaY = targetCenterY - stageCenterY;
+
+    var scaleX = targetRect.width / stageRect.width;
+    var scaleY = targetRect.height / stageRect.height;
+
+    /* 너무 작아지면 티가 안 나고, 너무 크면 안 빨려들어감 */
+    var scale = Math.min(scaleX, scaleY) * 2.2;
+    scale = Math.max(0.12, Math.min(scale, 0.24));
+
+    loader.style.setProperty("--gd-pull-x", deltaX + "px");
+    loader.style.setProperty("--gd-pull-y", deltaY + "px");
+    loader.style.setProperty("--gd-pull-scale", scale);
+
+    return true;
+  }
+
+  var showTime = 2000;   // 프리로더 보여주는 시간
+  var hideTime = 820;    // 빨려든 후 페이드 시작
+  var removeTime = 1250; // 제거 시점
+
+  setTimeout(function () {
+    var ok = setPullMotion();
+
+    if (ok) {
+      loader.classList.add("is-pull");
+
+      setTimeout(function () {
+        loader.classList.add("is-hide");
+      }, hideTime);
+
+      setTimeout(function () {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+      }, removeTime);
+    } else {
+      loader.classList.add("is-hide");
+
+      setTimeout(function () {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+      }, 600);
+    }
+  }, showTime);
+
+})();
+</script>
