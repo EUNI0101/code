@@ -1,0 +1,978 @@
+<style>
+  #near-implant-survey {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    background: #ffffff;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    color: #111;
+  }
+
+  #near-implant-survey * {
+    box-sizing: border-box;
+    word-break: keep-all;
+  }
+
+  /* ===== 1. 상단 헤더 ===== */
+  .near-header-section {
+    background: #ffffff;
+    padding: 18px 12px 14px;
+  }
+
+  .near-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .near-logo-placeholder {
+    width: 130px;
+    height: 38px;
+    border: 1px dashed #b7c0cf;
+    border-radius: 8px;
+    background: #fff;
+    color: #97a2b4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .near-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .near-location-text {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    white-space: nowrap;
+  }
+
+  .near-location-icon {
+    font-size: 18px;
+  }
+
+  .near-call-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #2366ff 0%, #2744ff 100%);
+    color: #fff !important;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    box-shadow: 0 8px 18px rgba(38, 82, 255, 0.18);
+    flex: 0 0 auto;
+  }
+
+  /* ===== 2. 진행바 영역 ===== */
+  .near-progress-section {
+    background: #eef4fb;
+    padding: 40px 12px 34px;
+  }
+
+  .near-main-title {
+  margin: 0;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1.38;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif !important;
+}
+
+  .near-progress-bar-wrap {
+    margin-top: 28px;
+    padding: 0 8px;
+  }
+
+  .near-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    background: #fff;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .near-progress-fill {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    bottom: 4px;
+    width: 0%;
+    min-width: 50px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fff200 0%, #ffb800 100%);
+    transition: width 0.35s ease;
+  }
+
+  .near-progress-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  /* ===== 3. 설문 본문 ===== */
+  .near-form-section {
+    background: #ffffff;
+    padding: 0 12px 28px;
+  }
+
+  .near-form-card {
+    background: #ffffff;
+    border-radius: 28px 28px 0 0;
+    padding: 34px 0 0;
+    min-height: 540px;
+  }
+
+  .near-question-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .near-question-number {
+    width: 46px;
+    flex: 0 0 46px;
+    text-align: center;
+    font-size: 66px;
+    line-height: 0.9;
+    color: #5e7fe8;
+    font-weight: 300;
+  }
+
+  .near-question-title {
+    flex: 1;
+    font-size: 22px;
+    line-height: 1.45;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    padding-top: 3px;
+  }
+
+  .near-question-body {
+    margin-top: 10px;
+  }
+
+  .near-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 92px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .near-option.is-selected {
+    border-color: #5e7fe8;
+    box-shadow: 0 8px 20px rgba(94, 127, 232, 0.14);
+  }
+
+  .near-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #5e7fe8;
+    flex: 0 0 18;
+  }
+
+  .near-option-label {
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+  }
+
+  .near-input-wrap {
+    margin-top: 8px;
+  }
+
+  .near-text-input,
+  .near-phone-input {
+    width: 100%;
+    height: 76px;
+    border-radius: 14px;
+    border: 2px solid #3759ff;
+    background: #fff;
+    outline: none;
+    font-size: 22px;
+    padding: 0 18px;
+    color: #111;
+  }
+
+  .near-text-input::placeholder,
+  .near-phone-input::placeholder {
+    color: #c9c9c9;
+  }
+
+  .near-question-desc {
+    margin-top: 22px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .near-consent-box {
+    border: 1px solid #cfcfcf;
+    border-radius: 14px;
+    padding: 14px;
+    background: #fff;
+  }
+
+  .near-consent-all {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+
+  .near-consent-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .near-consent-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .near-check {
+    width: 24px;
+    height: 24px;
+    accent-color: #5e7fe8;
+  }
+
+  .near-consent-label {
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+  }
+
+  .near-detail-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 84px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid #c8c8c8;
+    background: #fff;
+    color: #222;
+    font-size: 13px;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+
+  .near-consent-note {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .near-submit-row {
+    margin-top: 30px;
+  }
+
+  .near-next-btn {
+    width: 100%;
+    height: 68px;
+    border: 0;
+    border-radius: 999px;
+    background: #5d80e9;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(93, 128, 233, 0.24);
+  }
+
+  .near-next-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .near-error-text {
+    margin-top: 10px;
+    color: #d93025;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .near-success {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .near-success-title {
+    font-size: 28px;
+    line-height: 1.45;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .near-success-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+  }
+
+  /* ===== 4. 유의사항 ===== */
+  .near-notice-section {
+    background: #ffffff;
+    padding: 0 12px 0;
+  }
+
+  .near-notice-box {
+    background: #f3f3f3;
+    padding: 24px 16px;
+  }
+
+  .near-notice-box h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .near-notice-box ul {
+    margin: 0;
+    padding-left: 16px;
+  }
+
+  .near-notice-box li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #222;
+  }
+
+  /* ===== 5. 푸터 ===== */
+  .near-footer-section {
+    background: #ffffff;
+    padding: 0 12px 24px;
+  }
+
+  .near-footer-box {
+    background: #464646;
+    color: #fff;
+    border-radius: 12px;
+    text-align: center;
+    padding: 18px 18px 20px;
+  }
+
+  .near-footer-box p {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .near-footer-box a {
+    color: #fff !important;
+    text-decoration: none !important;
+  }
+
+  @media (min-width: 768px) {
+    .near-header-section {
+      padding: 22px 18px 16px;
+    }
+
+    .near-logo-placeholder {
+      width: 170px;
+      height: 46px;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+
+    .near-location-text {
+      font-size: 16px;
+      gap: 6px;
+    }
+
+    .near-location-icon {
+      font-size: 20px;
+    }
+
+    .near-call-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      font-size: 26px;
+    }
+
+    .near-progress-section {
+      padding: 44px 18px 42px;
+    }
+
+    .near-main-title {
+      font-size: 34px;
+    }
+
+    .near-progress-bar-wrap {
+      margin-top: 36px;
+      padding: 0 18px;
+    }
+
+    .near-progress-bar {
+      height: 68px;
+    }
+
+    .near-progress-text {
+      font-size: 24px;
+    }
+
+    .near-form-section {
+      padding: 0 18px 30px;
+    }
+
+    .near-form-card {
+      padding-top: 42px;
+      min-height: 700px;
+      border-radius: 34px 34px 0 0;
+    }
+
+    .near-question-head {
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .near-question-number {
+      width: 66px;
+      flex-basis: 66px;
+      font-size: 88px;
+    }
+
+    .near-question-title {
+      font-size: 30px;
+      padding-top: 8px;
+    }
+
+    .near-option {
+      min-height: 120px;
+      padding: 20px 26px;
+      margin-bottom: 18px;
+      gap: 18px;
+      border-radius: 18px;
+    }
+
+    .near-option input[type="radio"] {
+      width: 32px;
+      height: 32px;
+    }
+
+    .near-option-label {
+      font-size: 26px;
+    }
+
+    .near-text-input,
+    .near-phone-input {
+      height: 98px;
+      font-size: 30px;
+      padding: 0 26px;
+      border-radius: 18px;
+    }
+
+    .near-question-desc {
+      margin-top: 28px;
+      font-size: 18px;
+    }
+
+    .near-consent-box {
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+    }
+
+    .near-consent-label {
+      font-size: 18px;
+    }
+
+    .near-detail-btn {
+      min-width: 110px;
+      height: 42px;
+      padding: 0 18px;
+      font-size: 16px;
+    }
+
+    .near-consent-note {
+      font-size: 14px;
+    }
+
+    .near-submit-row {
+      margin-top: 42px;
+    }
+
+    .near-next-btn {
+      height: 84px;
+      font-size: 24px;
+    }
+
+    .near-notice-section {
+      padding: 0 18px 0;
+    }
+
+    .near-notice-box {
+      padding: 28px 18px 24px;
+    }
+
+    .near-footer-section {
+      padding: 0 18px 30px;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwm8GubtVRNK-aByYQNXYrKy5NC76GBoQ4Pfa-5biOyJErin21EDTbaw-QfrCIEoNYF/exec";
+
+    const steps = [
+      {
+        no: "1",
+        progressLabel: "진행상황 0%",
+        progressValue: 0,
+        type: "radio",
+        question: "임플란트는 누구를 위해 알아보고 계십니까?",
+        name: "target_for",
+        options: ["본인", "가족 혹은 지인"]
+      },
+      {
+        no: "2",
+        progressLabel: "진행상황 15%",
+        progressValue: 15,
+        type: "radio",
+        question: "임플란트가 필요한 부위는 어디인가요?",
+        name: "implant_area",
+        options: ["앞니", "어금니", "전체", "모르겠음"]
+      },
+      {
+        no: "3",
+        progressLabel: "진행상황 30%",
+        progressValue: 30,
+        type: "radio",
+        question: "임플란트나 브릿지를 해본적이 있으십니까?",
+        name: "implant_history",
+        options: ["예", "아니오"]
+      },
+      {
+        no: "4",
+        progressLabel: "진행상황 45%",
+        progressValue: 45,
+        type: "radio",
+        question: "대상자의 성별은 무엇입니까?",
+        name: "gender",
+        options: ["남성", "여성"]
+      },
+      {
+        no: "5",
+        progressLabel: "진행상황 60%",
+        progressValue: 60,
+        type: "radio",
+        question: "대상자의 연령대는 무엇입니까?",
+        name: "age_group",
+        options: ["30대", "40대", "50대", "60대 이상"]
+      },
+      {
+        no: "6",
+        progressLabel: "진행상황 75%",
+        progressValue: 75,
+        type: "text",
+        question: "대상자의 성함을 입력해 주세요",
+        name: "name",
+        placeholder: "이름",
+        desc: "60초 이내로 짧은 양식을 작성해 주시기만 하면 됩니다."
+      },
+      {
+        no: "7",
+        progressLabel: "진행상황 90%",
+        progressValue: 90,
+        type: "phone",
+        question: "연락처를 입력해 주세요",
+        name: "phone",
+        placeholder: "연락처",
+        desc: "예: 01012345678"
+      },
+      {
+        no: "8",
+        progressLabel: "마지막 확인입니다",
+        progressValue: 100,
+        type: "consent",
+        question: "동의 시 전문 상담원이 전화로 무료상담을 진행할 예정입니다.",
+        name: "consent"
+      }
+    ];
+
+    const state = {
+      currentStep: 0,
+      answers: {
+        target_for: "",
+        implant_area: "",
+        implant_history: "",
+        gender: "",
+        age_group: "",
+        name: "",
+        phone: "",
+        agree_privacy: false,
+        agree_marketing: false
+      }
+    };
+
+    const elStepNumber = document.getElementById("nearStepNumber");
+    const elStepQuestion = document.getElementById("nearStepQuestion");
+    const elStepBody = document.getElementById("nearStepBody");
+    const elStepDesc = document.getElementById("nearStepDesc");
+    const elNextBtn = document.getElementById("nearNextBtn");
+    const elProgressFill = document.getElementById("nearProgressFill");
+    const elProgressText = document.getElementById("nearProgressText");
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderStep() {
+      const step = steps[state.currentStep];
+
+      elStepNumber.textContent = step.no;
+      elStepQuestion.textContent = step.question;
+      elStepDesc.textContent = step.desc || "";
+      elProgressText.textContent = step.progressLabel;
+
+      if (step.progressValue <= 0) {
+        elProgressFill.style.width = "50px";
+      } else {
+        elProgressFill.style.width = `calc(${step.progressValue}% - 4px)`;
+      }
+
+      elNextBtn.textContent = state.currentStep === steps.length - 1 ? "설문제출완료" : "계속하기";
+
+      let html = "";
+
+      if (step.type === "radio") {
+        html = step.options.map((option, index) => {
+          const checked = state.answers[step.name] === option ? "checked" : "";
+          const selectedClass = checked ? "is-selected" : "";
+          return `
+            <label class="near-option ${selectedClass}">
+              <input type="radio" name="${step.name}" value="${escapeHtml(option)}" ${checked}>
+              <span class="near-option-label">${escapeHtml(option)}</span>
+            </label>
+          `;
+        }).join("");
+      }
+
+      if (step.type === "text") {
+        html = `
+          <div class="near-input-wrap">
+            <input
+              type="text"
+              class="near-text-input"
+              id="nearTextInput"
+              placeholder="${escapeHtml(step.placeholder || "")}"
+              value="${escapeHtml(state.answers[step.name] || "")}"
+              maxlength="20"
+            >
+            <div class="near-error-text" id="nearErrorText"></div>
+          </div>
+        `;
+      }
+
+      if (step.type === "phone") {
+        html = `
+          <div class="near-input-wrap">
+            <input
+              type="tel"
+              class="near-phone-input"
+              id="nearPhoneInput"
+              placeholder="${escapeHtml(step.placeholder || "")}"
+              value="${escapeHtml(state.answers[step.name] || "")}"
+              inputmode="numeric"
+              maxlength="13"
+            >
+            <div class="near-error-text" id="nearErrorText"></div>
+          </div>
+        `;
+      }
+
+      if (step.type === "consent") {
+        const privacyChecked = state.answers.agree_privacy ? "checked" : "";
+        const marketingChecked = state.answers.agree_marketing ? "checked" : "";
+        const allChecked = (state.answers.agree_privacy && state.answers.agree_marketing) ? "checked" : "";
+
+        html = `
+          <div class="near-consent-box">
+            <div class="near-consent-all">
+              <label class="near-consent-left">
+                <input type="checkbox" class="near-check" id="nearAgreeAll" ${allChecked}>
+                <span class="near-consent-label">전체동의</span>
+              </label>
+            </div>
+
+            <div class="near-consent-item">
+              <label class="near-consent-left">
+                <input type="checkbox" class="near-check" id="nearAgreePrivacy" ${privacyChecked}>
+                <span class="near-consent-label">개인정보 수집 · 이용 동의(필수)</span>
+              </label>
+              <button type="button" class="near-detail-btn" data-detail="privacy">자세히보기</button>
+            </div>
+
+            <div class="near-consent-item">
+              <label class="near-consent-left">
+                <input type="checkbox" class="near-check" id="nearAgreeMarketing" ${marketingChecked}>
+                <span class="near-consent-label">마케팅 활용 및 수신 동의(선택)</span>
+              </label>
+              <button type="button" class="near-detail-btn" data-detail="marketing">자세히보기</button>
+            </div>
+
+            <div class="near-consent-note">
+              ※ 필수항목에 동의하지 않으실 경우 서비스 신청이 불가합니다.<br>
+              ※ 선택항목에 동의하지 않으셔도 서비스 신청은 가능하나, 관련 서비스는 제공받으실 수 없습니다.
+            </div>
+            <div class="near-error-text" id="nearErrorText"></div>
+          </div>
+        `;
+      }
+
+      elStepBody.innerHTML = html;
+      bindStepEvents(step);
+    }
+
+    function bindStepEvents(step) {
+      if (step.type === "radio") {
+        const radios = elStepBody.querySelectorAll(`input[name="${step.name}"]`);
+        const labels = elStepBody.querySelectorAll(".near-option");
+
+        radios.forEach((radio, idx) => {
+          radio.addEventListener("change", function () {
+            state.answers[step.name] = this.value;
+            labels.forEach(label => label.classList.remove("is-selected"));
+            if (labels[idx]) labels[idx].classList.add("is-selected");
+          });
+        });
+      }
+
+      if (step.type === "text") {
+        const input = document.getElementById("nearTextInput");
+        input.addEventListener("input", function () {
+          state.answers[step.name] = this.value;
+          clearError();
+        });
+      }
+
+      if (step.type === "phone") {
+        const input = document.getElementById("nearPhoneInput");
+        input.addEventListener("input", function () {
+          let value = this.value.replace(/[^0-9]/g, "");
+          if (value.length > 11) value = value.slice(0, 11);
+
+          if (value.length <= 3) {
+            this.value = value;
+          } else if (value.length <= 7) {
+            this.value = value.replace(/(\d{3})(\d+)/, "$1-$2");
+          } else {
+            this.value = value.replace(/(\d{3})(\d{4})(\d+)/, "$1-$2-$3");
+          }
+
+          state.answers[step.name] = this.value;
+          clearError();
+        });
+      }
+
+      if (step.type === "consent") {
+        const agreeAll = document.getElementById("nearAgreeAll");
+        const agreePrivacy = document.getElementById("nearAgreePrivacy");
+        const agreeMarketing = document.getElementById("nearAgreeMarketing");
+        const detailBtns = elStepBody.querySelectorAll(".near-detail-btn");
+
+        agreeAll.addEventListener("change", function () {
+          agreePrivacy.checked = this.checked;
+          agreeMarketing.checked = this.checked;
+          state.answers.agree_privacy = this.checked;
+          state.answers.agree_marketing = this.checked;
+          clearError();
+        });
+
+        agreePrivacy.addEventListener("change", function () {
+          state.answers.agree_privacy = this.checked;
+          agreeAll.checked = agreePrivacy.checked && agreeMarketing.checked;
+          clearError();
+        });
+
+        agreeMarketing.addEventListener("change", function () {
+          state.answers.agree_marketing = this.checked;
+          agreeAll.checked = agreePrivacy.checked && agreeMarketing.checked;
+          clearError();
+        });
+
+        detailBtns.forEach(btn => {
+          btn.addEventListener("click", function () {
+            const type = this.getAttribute("data-detail");
+            if (type === "privacy") {
+              alert("개인정보 수집·이용 동의\n\n수집항목: 이름, 연락처, 설문응답\n수집목적: 상담 진행 및 고객 응대\n보관기간: 관련 법령 및 내부 방침에 따름");
+            } else {
+              alert("마케팅 활용 및 수신 동의\n\n이벤트, 혜택, 병원 소식 등의 안내를 위해 연락처를 활용할 수 있습니다.\n선택항목이며 동의하지 않아도 신청은 가능합니다.");
+            }
+          });
+        });
+      }
+    }
+
+    function clearError() {
+      const errorEl = document.getElementById("nearErrorText");
+      if (errorEl) errorEl.textContent = "";
+    }
+
+    function showError(message) {
+      const errorEl = document.getElementById("nearErrorText");
+      if (errorEl) errorEl.textContent = message;
+    }
+
+    function validateStep() {
+      const step = steps[state.currentStep];
+
+      if (step.type === "radio" && !state.answers[step.name]) {
+        alert("항목을 선택해 주세요.");
+        return false;
+      }
+
+      if (step.type === "text") {
+        const name = (state.answers.name || "").trim();
+        if (!name) {
+          showError("이름을 입력해 주세요.");
+          return false;
+        }
+      }
+
+      if (step.type === "phone") {
+        const phoneRaw = (state.answers.phone || "").replace(/[^0-9]/g, "");
+        if (!phoneRaw) {
+          showError("연락처를 입력해 주세요.");
+          return false;
+        }
+        if (phoneRaw.length < 10 || phoneRaw.length > 11) {
+          showError("연락처 형식을 확인해 주세요.");
+          return false;
+        }
+      }
+
+      if (step.type === "consent" && !state.answers.agree_privacy) {
+        showError("개인정보 수집·이용 동의는 필수입니다.");
+        return false;
+      }
+
+      return true;
+    }
+
+    function goNext() {
+      if (!validateStep()) return;
+
+      if (state.currentStep < steps.length - 1) {
+        state.currentStep += 1;
+        renderStep();
+        scrollToTop();
+      } else {
+        submitSurvey();
+      }
+    }
+
+    function scrollToTop() {
+      const target = document.getElementById("near-implant-survey");
+      if (!target) return;
+      window.scrollTo({
+        top: target.offsetTop - 20,
+        behavior: "smooth"
+      });
+    }
+
+    function submitSurvey() {
+      elNextBtn.disabled = true;
+      elNextBtn.textContent = "전송중...";
+
+      const payload = {
+        submitted_at: new Date().toLocaleString("ko-KR"),
+        target_for: state.answers.target_for,
+        implant_area: state.answers.implant_area,
+        implant_history: state.answers.implant_history,
+        gender: state.answers.gender,
+        age_group: state.answers.age_group,
+        name: state.answers.name,
+        phone: state.answers.phone,
+        agree_privacy: state.answers.agree_privacy ? "동의" : "미동의",
+        agree_marketing: state.answers.agree_marketing ? "동의" : "미동의",
+        page_name: "임플란트 설문 랜딩",
+        referer: window.location.href
+      };
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: new URLSearchParams(payload).toString()
+      })
+      .then(() => {
+        showSuccess();
+      })
+      .catch(() => {
+        alert("전송 중 오류가 발생했습니다. 다시 시도해 주세요.");
+        elNextBtn.disabled = false;
+        elNextBtn.textContent = "설문제출완료";
+      });
+    }
+
+    function showSuccess() {
+      const card = document.querySelector(".near-form-card");
+      card.innerHTML = `
+        <div class="near-success">
+          <div class="near-success-title">설문 제출이 완료되었습니다.</div>
+          <div class="near-success-desc">
+            입력하신 연락처로 상담원이 순차적으로 연락드릴 예정입니다.<br>
+            감사합니다.
+          </div>
+        </div>
+      `;
+
+      elProgressText.textContent = "제출 완료";
+      elProgressFill.style.width = "calc(100% - 4px)";
+    }
+
+    elNextBtn.addEventListener("click", goNext);
+    renderStep();
+  })();
+
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAbWZwJ0N-l1felfRbvfJllltDalfr4oIlJOy-tzAwTTqX17NqRHwJfmOzW3yUwY_U/exec";
+</script>
