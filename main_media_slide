@@ -1,0 +1,269 @@
+<section id="clinicSection" class="clinic-container">
+  <style>
+    .clinic-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      box-sizing: border-box;
+      font-family: 'Pretendard','Noto Sans KR',sans-serif;
+      color: #fff;
+    }
+
+    /* ===== 클릭 가능 영역 ===== */
+    .clinic-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 60px;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* ===== 왼쪽 텍스트 ===== */
+    .clinic-left {
+      flex: 1;
+      min-width: 400px;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .text-box {
+      flex: 1;
+    }
+
+    .clinic-left h4 {
+      font-size: 15px;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    .clinic-left h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+
+    .clinic-left p {
+      font-size: 16px;
+      color: #e5e5e5;
+      line-height: 1.7;
+      margin-bottom: 0;
+      white-space: pre-line;
+      max-width: 95%;
+    }
+
+    /* ===== 버튼 ===== */
+    .nav-arrows {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 5;
+    }
+
+    .nav-arrows button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+      background: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-arrows button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* ===== 오른쪽 이미지 ===== */
+    .clinic-right {
+      flex: 1;
+      min-width: 380px;
+      text-align: right;
+    }
+
+    .clinic-right img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      user-select: none;
+      transition: opacity 0.4s ease;
+    }
+
+    @media (max-width: 1024px) {
+      .clinic-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+        padding: 60px 20px;
+      }
+
+      .clinic-link {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .clinic-left {
+        order: 2;
+        max-width: 600px;
+        align-items: center;
+        text-align: center;
+        min-height: 480px;
+      }
+
+      .clinic-right {
+        order: 1;
+        max-width: 600px;
+      }
+
+      .clinic-right img {
+        height: auto;
+      }
+
+      .nav-arrows {
+        position: static;
+        justify-content: center;
+        margin-top: 24px;
+      }
+
+      .clinic-left p {
+        max-width: 100%;
+      }
+    }
+  </style>
+
+  <!-- 클릭 전체 묶음 -->
+  <div id="articleLink" class="clinic-link" role="link" tabindex="0">
+    <!-- 왼쪽 텍스트 -->
+    <div class="clinic-left">
+      <div class="text-box">
+        <h4 id="slideNum">메디컬투데이</h4>
+        <h2 id="slideTitle">잇몸염증으로 오해하기 쉬운 구강질환 3가지</h2>
+        <p id="slideDesc">
+          우리가 평소 흔히 겪는 잇몸 통증이나 붓기 증상은 대부분 ‘잇몸 염증’으로 생각하기 쉽다.
+          그러나 단순한 치석이나 치태로 인한 염증 외에도... 더보기
+        </p>
+      </div>
+
+      <div class="nav-arrows">
+        <button type="button" id="prevBtn" aria-label="이전">&#8592;</button>
+        <button type="button" id="nextBtn" aria-label="다음">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- 오른쪽 이미지 -->
+    <div class="clinic-right">
+      <img id="slideImage" src="https://cdn.imweb.me/upload/S202110259926fda0ab374/c39858e679c46.jpeg" alt="기사 이미지" />
+    </div>
+  </div>
+
+  <script>
+    const slides = [
+      {
+        num: "메디컬투데이",
+        title: "잇몸염증으로 오해하기 쉬운 구강질환 3가지",
+        desc: "우리가 평소 흔히 겪는 잇몸 통증이나 붓기 증상은 대부분 ‘잇몸 염증’으로 생각하기 쉽다. 그러나 단순한 치석이나 치태로 인한 염증 외에도... 더보기",
+        img: "https://cdn.imweb.me/upload/S202110259926fda0ab374/c39858e679c46.jpeg",
+        link: "https://mdtoday.co.kr/news/view/1065588412747339"
+      },
+      {
+        num: "메디컬투데이",
+        title: "수면 치과 치료 ‘의식하진정법’에 대한 올바른 이해",
+        desc: "치과 치료에 대한 불안감은 많은 이들이 공감하는 문제다. 특히 치과 공포증이 있거나, 구강 구조상 헛구역질이 심하거나, 오랜 시간 동안 복잡... 더보기",
+        img: "https://cdn.imweb.me/upload/S202110259926fda0ab374/6387679f1ab23.jpeg",
+        link: "https://mdtoday.co.kr/news/view/1065572539583363"
+      },
+      {
+        num: "메디컬투데이",
+        title: "디지털 임플란트, 정밀한 계획으로 성공적인 임플란트 제공",
+        desc: "임플란트 치료는 단순한 인공치아 식립이 아니다. 뼈의 구조와 밀도, 신경의 위치, 잇몸의 건강 상태까지 복합적으로 고려해야하는 고난도의... 더보기",
+        img: "https://cdn.imweb.me/upload/S202110259926fda0ab374/be9836c78a5c9.jpeg",
+        link: "https://mdtoday.co.kr/news/view/1065587349418070"
+      },
+      {
+        num: "메디컬투데이",
+        title: "수면 치과 치료 ‘의식하진정법’, 편안함보다 중요한 건 ‘안전’",
+        desc: "치과 치료에 대한 불안감은 누구나 한 번쯤 느껴본 감정이다. 특히 치과 공포증이 있거나 구강 구조상 헛구역질이 심한 경우, 혹은 오랜... 더보기",
+        img: "https://cdn.imweb.me/upload/S202110259926fda0ab374/911685d7615ab.jpg",
+        link: "https://mdtoday.co.kr/news/view/1065574316348457"
+      },
+      {
+        num: "메디컬투데이",
+        title: "잇몸염증으로 오해하기 쉬운 구강질환 3가지",
+        desc: "우리가 평소 흔히 겪는 잇몸 통증이나 붓기 증상은 대부분 ‘잇몸 염증’으로 생각하기 쉽다. 그러나 단순한 치석이나 치태로 인한 염증 외에도... 더보기",
+        img: "https://cdn.imweb.me/upload/S202110259926fda0ab374/6f3c7eae2d2b7.jpeg",
+        link: "https://mdtoday.co.kr/news/view/1065588412747339"
+      },
+      {
+        num: "메디컬투데이",
+        title: "잇몸병, 왜 위험한가?... '조용하지만 치명적인 질환'",
+        desc: "우리나라 성인의 상당수가 앓고 있는 질환, 바로 잇몸병(치주질환)이다. 감기보다 흔하다는 표현이 과장이 아닐 정도로 높은 유병률을 보이지만... 더보기",
+        img: "https://cdn.imweb.me/upload/S202110259926fda0ab374/5abbb63faf421.png",
+        link: "https://mdtoday.co.kr/news/view/1065574620349230"
+      }
+    ];
+
+    let currentIndex = 0;
+    const articleLink = document.getElementById("articleLink");
+    const img = document.getElementById("slideImage");
+
+    function updateSlide(index) {
+      const s = slides[index];
+
+      img.style.opacity = 0;
+
+      setTimeout(() => {
+        document.getElementById("slideNum").textContent = s.num;
+        document.getElementById("slideTitle").textContent = s.title;
+        document.getElementById("slideDesc").textContent = s.desc;
+        img.src = s.img;
+        articleLink.dataset.href = s.link;
+        img.style.opacity = 1;
+      }, 250);
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlide(currentIndex);
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlide(currentIndex);
+    });
+
+    articleLink.addEventListener("click", function(e) {
+      if (e.target.closest(".nav-arrows")) return;
+      window.open(slides[currentIndex].link, "_blank");
+    });
+
+    articleLink.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        window.open(slides[currentIndex].link, "_blank");
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</section>
