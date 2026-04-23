@@ -1,0 +1,45 @@
+<script>
+(function () {
+  var preloaderId = 'mw-preloader';
+
+  function lockScroll() {
+    document.documentElement.classList.add('mw-lock');
+    document.body.classList.add('mw-lock');
+  }
+
+  function unlockScroll() {
+    document.documentElement.classList.remove('mw-lock');
+    document.body.classList.remove('mw-lock');
+  }
+
+  function runPreloader() {
+    var preloader = document.getElementById(preloaderId);
+    if (!preloader) return;
+
+    lockScroll();
+
+    // 페이지가 살짝 뜬 뒤 바로 시작
+    setTimeout(function () {
+      preloader.classList.add('is-start');
+    }, 250);
+
+    // 애니메이션 끝나면 제거
+    setTimeout(function () {
+      preloader.classList.add('is-end');
+      unlockScroll();
+    }, 1750);
+
+    setTimeout(function () {
+      if (preloader && preloader.parentNode) {
+        preloader.parentNode.removeChild(preloader);
+      }
+    }, 2200);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runPreloader);
+  } else {
+    runPreloader();
+  }
+})();
+</script>
