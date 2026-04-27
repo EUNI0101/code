@@ -1,0 +1,703 @@
+<section id="nearSemiFlow" class="nsf">
+  <div class="nsf-inner">
+
+    <!-- 헤드 -->
+    <div class="nsf-head">
+      <h2 class="nsf-title">
+        당신의 매일이 오케이가 되도록<br>
+        OK 체인지 시스템
+      </h2>
+
+      <div class="nsf-copy">
+        <p>환자의 상태와 회복 목표에 맞춰 단계별로 맞춤 진행되며</p>
+        <p>단순한 통증 완화를 넘어 건강한 일상으로의 CHANGE 여정을 함께합니다.</p>
+        <p>통증부터 근육 케어까지, 최적의 치료를 위한 오케이의 약속입니다.</p>
+      </div>
+    </div>
+
+    <!-- 반원형 스테이지 -->
+    <div class="nsf-stage" id="nsfStage">
+      <svg class="nsf-svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- 배경 반원 -->
+        <path
+          id="nsfBaseArc"
+          d="M 300 620 A 300 300 0 0 1 900 620"
+          fill="none"
+          stroke="#c3ccdb"
+          stroke-width="14"
+          stroke-linecap="round"
+        />
+
+        <!-- 활성 진행 반원 -->
+        <path
+          id="nsfProgressArc"
+          d="M 300 620 A 300 300 0 0 1 900 620"
+          fill="none"
+          stroke="#4a84ff"
+          stroke-width="8"
+          stroke-linecap="round"
+          pathLength="100"
+          stroke-dasharray="0 100"
+        />
+      </svg>
+
+      <!-- 중앙 텍스트 -->
+      <div class="nsf-center">
+        <span>NEAR</span>
+        <span>DENTAL</span>
+      </div>
+
+      <!-- 단계 버튼 -->
+      <div class="nsf-steps" id="nsfSteps"></div>
+
+      <!-- 진행 점 -->
+      <div class="nsf-dot" id="nsfDot"></div>
+
+      <!-- 플로팅 카드 -->
+      <div class="nsf-card" id="nsfCard" aria-live="polite">
+        <div class="nsf-card-media">
+          <img id="nsfCardImg" src="" alt="">
+        </div>
+        <div class="nsf-card-body">
+          <h3 class="nsf-card-title">
+            <span id="nsfCardKo"></span>
+            <span id="nsfCardEn"></span>
+          </h3>
+          <p id="nsfCardDesc"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #nearSemiFlow.nsf{
+    position: relative;
+    width: 100%;
+    overflow: visible !important;
+    background: transparent;
+  }
+
+  #nearSemiFlow .nsf-inner{
+    width: min(1560px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 34px 0 0;
+    position: relative;
+    overflow: visible !important;
+  }
+
+  #nearSemiFlow .nsf-head{
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  #nearSemiFlow .nsf-title{
+    margin: 0;
+    font-size: clamp(34px, 3.2vw, 64px);
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #17191d;
+  }
+
+  #nearSemiFlow .nsf-copy{
+    margin-top: 26px;
+  }
+
+  #nearSemiFlow .nsf-copy p{
+    margin: 0;
+    font-size: clamp(15px, 1vw, 20px);
+    line-height: 1.9;
+    color: #252932;
+    letter-spacing: -0.02em;
+  }
+
+  #nearSemiFlow .nsf-copy p + p{
+    margin-top: 2px;
+  }
+
+  #nearSemiFlow .nsf-stage{
+    position: relative;
+    width: min(1400px, 100%);
+    margin: 46px auto 0;
+    aspect-ratio: 1200 / 760;
+    min-height: 620px;
+    overflow: visible !important;
+    z-index: 2;
+  }
+
+  #nearSemiFlow .nsf-svg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  #nearSemiFlow .nsf-center{
+    position: absolute;
+    left: 50%;
+    top: 74%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #nearSemiFlow .nsf-center span{
+    display: block;
+    color: #4a84ff;
+    font-size: clamp(52px, 5.3vw, 92px);
+    line-height: .95;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+
+  #nearSemiFlow .nsf-steps{
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    overflow: visible !important;
+  }
+
+  #nearSemiFlow .nsf-step{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: max-content;
+    max-width: 240px;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  #nearSemiFlow .nsf-step:focus-visible{
+    outline: none;
+  }
+
+  #nearSemiFlow .nsf-step-num{
+    width: 54px;
+    height: 54px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.92);
+    color: #b8bec9;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow:
+      0 0 0 8px rgba(255,255,255,.14),
+      0 8px 22px rgba(0,0,0,.03);
+    transition:
+      background .35s ease,
+      color .35s ease,
+      transform .35s ease,
+      box-shadow .35s ease;
+  }
+
+  #nearSemiFlow .nsf-step-label{
+    display: block;
+    color: #bbbbbb;
+    font-size: clamp(18px, 1.28vw, 30px);
+    line-height: 1.28;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-align: center;
+    white-space: pre-line;
+    transition: color .35s ease;
+    word-break: keep-all;
+  }
+
+  #nearSemiFlow .nsf-step.is-active .nsf-step-num{
+    background: #4a84ff;
+    color: #fff;
+    transform: scale(1.04);
+    box-shadow:
+      0 0 0 10px rgba(74,132,255,.14),
+      0 14px 34px rgba(74,132,255,.18);
+  }
+
+  #nearSemiFlow .nsf-step.is-active .nsf-step-label{
+    color: #131519;
+  }
+
+  #nearSemiFlow .nsf-dot{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #2f8cff;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    pointer-events: none;
+    box-shadow:
+      0 0 0 10px rgba(47,140,255,.12),
+      0 0 22px rgba(47,140,255,.28);
+    transition:
+      left .68s cubic-bezier(.22,.8,.2,1),
+      top .68s cubic-bezier(.22,.8,.2,1);
+  }
+
+  #nearSemiFlow .nsf-card{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 350px;
+    background: #fff;
+    border-radius: 26px;
+    overflow: hidden;
+    z-index: 30;
+    box-shadow: 0 24px 56px rgba(29, 42, 80, .14);
+    transition:
+      left .72s cubic-bezier(.22,.8,.2,1),
+      top .72s cubic-bezier(.22,.8,.2,1),
+      opacity .28s ease,
+      transform .28s ease;
+    will-change: left, top, transform, opacity;
+    pointer-events: none;
+  }
+
+  #nearSemiFlow .nsf-card.is-changing{
+    opacity: .82;
+    transform: translateY(8px);
+  }
+
+  #nearSemiFlow .nsf-card-media{
+    aspect-ratio: 1.36 / 1;
+    background: #eef0f4;
+    overflow: hidden;
+  }
+
+  #nearSemiFlow .nsf-card-media img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #nearSemiFlow .nsf-card-body{
+    padding: 20px 20px 22px;
+  }
+
+  #nearSemiFlow .nsf-card-title{
+    margin: 0 0 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #nearSemiFlow .nsf-card-title #nsfCardKo{
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 800;
+    color: #111;
+    letter-spacing: -0.03em;
+  }
+
+  #nearSemiFlow .nsf-card-title #nsfCardEn{
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #b3bac7;
+    letter-spacing: -0.02em;
+  }
+
+  #nearSemiFlow #nsfCardDesc{
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.85;
+    font-weight: 600;
+    color: #47505d;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+  }
+
+  @media (max-width: 991px){
+    #nearSemiFlow .nsf-inner{
+      width: min(100%, calc(100% - 20px));
+      padding-top: 22px;
+    }
+
+    #nearSemiFlow .nsf-title{
+      font-size: clamp(28px, 8vw, 44px);
+    }
+
+    #nearSemiFlow .nsf-copy{
+      margin-top: 18px;
+    }
+
+    #nearSemiFlow .nsf-copy p{
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    #nearSemiFlow .nsf-stage{
+      min-height: 520px;
+      margin-top: 28px;
+    }
+
+    #nearSemiFlow .nsf-center{
+      top: 78%;
+    }
+
+    #nearSemiFlow .nsf-center span{
+      font-size: 42px;
+    }
+
+    #nearSemiFlow .nsf-step{
+      max-width: 110px;
+      gap: 8px;
+    }
+
+    #nearSemiFlow .nsf-step-num{
+      width: 42px;
+      height: 42px;
+      font-size: 15px;
+    }
+
+    #nearSemiFlow .nsf-step-label{
+      font-size: 14px;
+      line-height: 1.24;
+    }
+
+    #nearSemiFlow .nsf-card{
+      width: min(280px, calc(100vw - 30px));
+      border-radius: 22px;
+    }
+
+    #nearSemiFlow .nsf-card-body{
+      padding: 16px 16px 18px;
+    }
+
+    #nearSemiFlow .nsf-card-title #nsfCardKo{
+      font-size: 18px;
+    }
+
+    #nearSemiFlow .nsf-copy p:nth-child(3){
+      display: none;
+    }
+  }
+</style>
+
+<script>
+(function(){
+  const root = document.getElementById('nearSemiFlow');
+  if(!root) return;
+
+  const VIEW_W = 1200;
+  const VIEW_H = 760;
+
+  const ARC = {
+    cx: 600,
+    cy: 620,
+    r: 300,
+    startDeg: -150,   // 좌하단
+    endDeg: -30       // 우하단
+  };
+
+  const CARD = {
+    widthDesktop: 350,
+    widthMobile: 280,
+    heightApproxDesktop: 320,
+    heightApproxMobile: 280,
+    gap: 24
+  };
+
+  const AUTO_DELAY = 3200;
+
+  const data = [
+    {
+      step: 1,
+      label: "3D 데이터 확보",
+      cardKo: "3D 데이터 확보",
+      cardEn: "3D Digital Data",
+      desc: "초기 통증과 염증을 완화하여 손상된 조직의 회복을 돕습니다.",
+      img: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      step: 2,
+      label: "디지털 모의시술",
+      cardKo: "디지털 모의시술",
+      cardEn: "Digital Simulation",
+      desc: "정확한 계획 수립을 위해 환자 맞춤형 디지털 시뮬레이션을 진행합니다.",
+      img: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      step: 3,
+      label: "네비게이션\n수술 가이드 제작",
+      cardKo: "수술 가이드 제작",
+      cardEn: "Navigation Guide",
+      desc: "오차를 줄이고 정확도를 높이기 위해 수술 가이드를 정밀하게 설계합니다.",
+      img: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      step: 4,
+      label: "시술완료",
+      cardKo: "시술완료",
+      cardEn: "Procedure Complete",
+      desc: "계획에 맞춘 시술을 안정적으로 마무리하고 기능 회복을 확인합니다.",
+      img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      step: 5,
+      label: "사후관리",
+      cardKo: "사후관리",
+      cardEn: "After Care",
+      desc: "시술 이후의 안정적인 회복과 장기적인 유지 관리를 체계적으로 이어갑니다.",
+      img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
+    }
+  ];
+
+  const stepsWrap = root.querySelector('#nsfSteps');
+  const dot = root.querySelector('#nsfDot');
+  const progressArc = root.querySelector('#nsfProgressArc');
+  const stage = root.querySelector('#nsfStage');
+  const card = root.querySelector('#nsfCard');
+
+  const cardImg = root.querySelector('#nsfCardImg');
+  const cardKo = root.querySelector('#nsfCardKo');
+  const cardEn = root.querySelector('#nsfCardEn');
+  const cardDesc = root.querySelector('#nsfCardDesc');
+
+  let active = 0;
+  let timer = null;
+
+  function isMobile(){
+    return window.innerWidth <= 991;
+  }
+
+  function toPercentX(x){ return (x / VIEW_W) * 100; }
+  function toPercentY(y){ return (y / VIEW_H) * 100; }
+
+  function angleForIndex(i){
+    if(data.length === 1) return -90;
+    const t = i / (data.length - 1);
+    return ARC.startDeg + (ARC.endDeg - ARC.startDeg) * t;
+  }
+
+  function polar(cx, cy, r, deg){
+    const rad = deg * Math.PI / 180;
+    return {
+      x: cx + r * Math.cos(rad),
+      y: cy + r * Math.sin(rad)
+    };
+  }
+
+  function stepPoint(i){
+    const deg = angleForIndex(i);
+    return polar(ARC.cx, ARC.cy, ARC.r, deg);
+  }
+
+  function labelPoint(i){
+    const base = stepPoint(i);
+    const deg = angleForIndex(i);
+
+    const push = isMobile() ? 88 : 98;
+    let x = base.x;
+    let y = base.y - push;
+
+    if (deg < -120) x += isMobile() ? 18 : 26;
+    if (deg > -60)  x -= isMobile() ? 18 : 26;
+    if (Math.abs(deg + 90) < 8) y -= isMobile() ? 10 : 14;
+
+    return { x, y };
+  }
+
+  function dotPoint(i){
+    return stepPoint(i);
+  }
+
+  function clamp(v, min, max){
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function cardPoint(i){
+    const p = stepPoint(i);
+    const deg = angleForIndex(i);
+
+    const cardW = isMobile() ? CARD.widthMobile : CARD.widthDesktop;
+    const cardH = isMobile() ? CARD.heightApproxMobile : CARD.heightApproxDesktop;
+
+    let x = p.x;
+    let y = p.y;
+
+    if (deg <= -126) {           // 좌측 하단
+      x = p.x - cardW * 0.42;
+      y = p.y - cardH - 20;
+    } else if (deg <= -100) {    // 좌측 상단 쪽
+      x = p.x - cardW * 0.62;
+      y = p.y - cardH - 28;
+    } else if (deg <= -78) {     // 상단 중앙
+      x = p.x - cardW * 0.5;
+      y = p.y - cardH - 34;
+    } else if (deg <= -54) {     // 우측 상단
+      x = p.x - cardW * 0.38;
+      y = p.y - cardH - 28;
+    } else {                     // 우측 하단
+      x = p.x - cardW * 0.08;
+      y = p.y - cardH - 20;
+    }
+
+    const maxX = VIEW_W - cardW - 8;
+    const minX = 8;
+    const minY = 8;
+    const maxY = VIEW_H - cardH - 8;
+
+    x = clamp(x, minX, maxX);
+    y = clamp(y, minY, maxY);
+
+    return { x, y };
+  }
+
+  function renderSteps(){
+    stepsWrap.innerHTML = '';
+
+    data.forEach((item, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nsf-step';
+      btn.dataset.index = String(i);
+
+      const n = document.createElement('span');
+      n.className = 'nsf-step-num';
+      n.textContent = String(item.step).padStart(2, '0');
+
+      const label = document.createElement('span');
+      label.className = 'nsf-step-label';
+      label.textContent = item.label;
+
+      btn.appendChild(n);
+      btn.appendChild(label);
+      stepsWrap.appendChild(btn);
+
+      btn.addEventListener('click', () => {
+        moveTo(i, true);
+      });
+    });
+
+    layoutSteps();
+  }
+
+  function layoutSteps(){
+    const btns = stepsWrap.querySelectorAll('.nsf-step');
+    btns.forEach((btn, i) => {
+      const p = labelPoint(i);
+      btn.style.left = toPercentX(p.x) + '%';
+      btn.style.top = toPercentY(p.y) + '%';
+    });
+  }
+
+  function setActiveStep(i){
+    root.querySelectorAll('.nsf-step').forEach((el, idx) => {
+      el.classList.toggle('is-active', idx === i);
+    });
+  }
+
+  function setProgress(i){
+    const v = data.length === 1 ? 100 : (i / (data.length - 1)) * 100;
+    progressArc.style.strokeDasharray = `${v} 100`;
+  }
+
+  function moveDot(i){
+    const p = dotPoint(i);
+    dot.style.left = toPercentX(p.x) + '%';
+    dot.style.top = toPercentY(p.y) + '%';
+  }
+
+  function updateCardContent(item){
+    card.classList.add('is-changing');
+    setTimeout(() => {
+      cardImg.src = item.img;
+      cardImg.alt = item.cardKo;
+      cardKo.textContent = item.cardKo;
+      cardEn.textContent = item.cardEn;
+      cardDesc.textContent = item.desc;
+      card.classList.remove('is-changing');
+    }, 140);
+  }
+
+  function moveCard(i){
+    const p = cardPoint(i);
+    card.style.left = toPercentX(p.x) + '%';
+    card.style.top = toPercentY(p.y) + '%';
+  }
+
+  function moveTo(i, resetAuto){
+    active = i;
+    setActiveStep(i);
+    setProgress(i);
+    moveDot(i);
+    moveCard(i);
+    updateCardContent(data[i]);
+    if(resetAuto) restartAuto();
+  }
+
+  function next(){
+    const nextIndex = (active + 1) % data.length;
+    moveTo(nextIndex, false);
+  }
+
+  function stopAuto(){
+    if(timer){
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startAuto(){
+    stopAuto();
+    timer = setInterval(next, AUTO_DELAY);
+  }
+
+  function restartAuto(){
+    startAuto();
+  }
+
+  function initial(){
+    renderSteps();
+
+    const first = data[0];
+    cardImg.src = first.img;
+    cardImg.alt = first.cardKo;
+    cardKo.textContent = first.cardKo;
+    cardEn.textContent = first.cardEn;
+    cardDesc.textContent = first.desc;
+
+    setActiveStep(0);
+    setProgress(0);
+    moveDot(0);
+    moveCard(0);
+    startAuto();
+  }
+
+  initial();
+
+  window.addEventListener('resize', () => {
+    layoutSteps();
+    moveDot(active);
+    moveCard(active);
+  });
+
+  root.addEventListener('mouseenter', () => {
+    if(!isMobile()) stopAuto();
+  });
+
+  root.addEventListener('mouseleave', () => {
+    if(!isMobile()) startAuto();
+  });
+})();
+</script>
