@@ -1,0 +1,489 @@
+<section id="mwInsidePoswel" class="mw-inside-poswel">
+  <div class="mw-inside-inner">
+    <h2 class="mw-inside-title">INSIDE NEAR</h2>
+
+    <div class="mw-inside-panel">
+      <div class="mw-inside-left">
+        <div class="mw-inside-cate">
+          <button class="mw-cate-btn is-active"
+            data-title="진료철학"
+            data-desc="서울니어치과 원주점은 '합리적인 프리미엄', '과잉없는 치료', '통증적은 치료'라는 진료철학을 지향합니다."
+            data-img="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1400&auto=format&fit=crop"
+            data-link="https://wjneardent.kr/neardent">
+            진료철학
+            </button>
+
+          <button class="mw-cate-btn"
+            data-title="디지털 임플란트"
+            data-desc="디지털 장비를 활용한 정밀 진단과 계획을 통해 보다 체계적이고 안정적인 임플란트 치료를 진행합니다."
+            data-img="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1400&auto=format&fit=crop"
+            data-link="https://wjneardent.kr/implant">
+            디지털 임플란트</button>
+
+          <button class="mw-cate-btn"
+            data-title="수면치과치료"
+            data-desc="서울니어치과는 600여건 이상의 의식하진정법 임상경험을 바탕으로 치과에 대한 두려움을 줄이는 치과치료를 위해 노력하고 있습니다."
+            data-img="https://cdn.imweb.me/upload/S202110259926fda0ab374/f34f7f7d8c813.png"
+            data-link="https://wjneardent.kr/sedation">
+            수면치과치료
+          </button>
+
+          <button class="mw-cate-btn"
+            data-title="디지털기공실"
+            data-desc="서울니어치과는 원내 디지털 기공소를 운영하여 디지털 스캔부터 보철물 디자인 및 제작의 전 과정이 원내에서 이루어지고 있습니다."
+            data-img="https://cdn.imweb.me/upload/S202110259926fda0ab374/7a4d8c8008626.png"
+            data-link="https://wjneardent.kr/digital_lab">
+            디지털기공실
+          </button>
+        </div>
+
+        <div class="mw-inside-copy">
+          <h3 class="mw-copy-title" id="mwInsideCurrentTitle">진료철학</h3>
+          <p class="mw-copy-desc" id="mwInsideCurrentDesc">
+            서울니어치과 원주점은 '합리적인 프리미엄', '과잉없는 치료', '통증적은 치료'라는 진료철학을 지향합니다.
+          </p>
+          <a href="https://wjneardent.kr/neardent" class="mw-copy-btn">더 알아보기</a>
+        </div>
+      </div>
+
+      <div class="mw-inside-right">
+        <div class="mw-inside-media">
+          <img id="mwInsideMainImage"
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1400&auto=format&fit=crop"
+            alt="치과 진료 이미지">
+
+          <div class="mw-inside-overlay">
+            <div class="mw-inside-label" id="mwInsideImageLabel">진료철학</div>
+            <div class="mw-inside-nav">
+              <button type="button" class="mw-arrow prev" aria-label="이전">&#8249;</button>
+              <span id="mwInsideCounter">01 / 04</span>
+              <button type="button" class="mw-arrow next" aria-label="다음">&#8250;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+#mwInsidePoswel{
+  --panel:#e8e8e8;
+  --text:#111;
+  --muted:#7c7c7c;
+  --accent:#2f5fb8;
+  --radius:34px;
+  padding:40px 20px 80px;
+  background:#f5f5f5;
+  overflow:hidden;
+}
+
+#mwInsidePoswel *{box-sizing:border-box;}
+
+#mwInsidePoswel .mw-inside-inner{
+  position:relative;
+  max-width:1320px;
+  margin:0 auto;
+}
+
+#mwInsidePoswel .mw-inside-title{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:clamp(52px, 8vw, 112px);
+  line-height:.86;
+  font-weight:700;
+  letter-spacing:-0.06em;
+  color:var(--text);
+  white-space:nowrap;
+}
+
+#mwInsidePoswel .mw-inside-panel{
+  position:relative;
+  z-index:2;
+  margin-top:-26px;
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:34px;
+  display:grid;
+  grid-template-columns:320px minmax(0,1fr);
+  gap:36px;
+  align-items:stretch;
+}
+
+#mwInsidePoswel .mw-inside-left{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:30px;
+  padding:8px 0;
+}
+
+#mwInsidePoswel .mw-inside-cate{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+
+#mwInsidePoswel .mw-cate-btn{
+  position:relative;
+  border:0;
+  background:transparent;
+  padding:6px 0;
+  font-size:18px;
+  line-height:1.45;
+  color:#8e8e8e;
+  cursor:pointer;
+  font-weight:500;
+  text-align:left;
+  white-space:nowrap;
+  transition:color .25s ease;
+}
+
+#mwInsidePoswel .mw-cate-btn.is-active{
+  color:var(--accent);
+  font-weight:700;
+}
+
+#mwInsidePoswel .mw-cate-btn.is-active::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background:var(--accent);
+  border-radius:999px;
+}
+
+#mwInsidePoswel .mw-inside-copy{
+  max-width:260px;
+}
+
+#mwInsidePoswel .mw-copy-title{
+  display:none;
+}
+
+#mwInsidePoswel .mw-copy-desc{
+  margin:0 0 24px;
+  font-size:clamp(18px,1.35vw,22px);
+  line-height:1.65;
+  letter-spacing:-0.03em;
+  color:#161616;
+  font-weight:600;
+  word-break:keep-all;
+}
+
+#mwInsidePoswel .mw-copy-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:130px;
+  height:46px;
+  padding:0 20px;
+  border-radius:14px;
+  background:#1b1b1b;
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+#mwInsidePoswel .mw-inside-right{
+  min-width:0;
+  display:flex;
+  align-items:center;
+}
+
+#mwInsidePoswel .mw-inside-media{
+  position:relative;
+  width:100%;
+  max-width:860px;
+  margin-left:auto;
+  height:clamp(360px,40vw,580px);
+  border-radius:28px;
+  overflow:hidden;
+  background:#dcdcdc;
+}
+
+#mwInsidePoswel .mw-inside-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:opacity .35s ease, transform .55s ease;
+}
+
+#mwInsidePoswel .mw-inside-media.is-changing img{
+  opacity:.75;
+  transform:scale(1.03);
+}
+
+#mwInsidePoswel .mw-inside-overlay{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:22px 24px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:16px;
+  background:linear-gradient(to top,rgba(0,0,0,.32),rgba(0,0,0,0));
+}
+
+#mwInsidePoswel .mw-inside-label,
+#mwInsidePoswel .mw-inside-nav{
+  color:#fff;
+  font-weight:700;
+}
+
+#mwInsidePoswel .mw-inside-label{
+  font-size:17px;
+}
+
+#mwInsidePoswel .mw-inside-nav{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:16px;
+}
+
+#mwInsidePoswel .mw-arrow{
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  padding:0;
+  width:20px;
+  height:20px;
+}
+
+@media (max-width:991px){
+  #mwInsidePoswel{
+    padding:44px 12px 56px;
+    background:transparent;
+  }
+  
+
+  /* 1️⃣ 타이틀 완전 가운데 */
+  #mwInsidePoswel .mw-inside-title{
+  z-index:1;
+  margin:0 0 -24px 0;
+  font-size:clamp(56px, 15vw, 76px);
+  line-height:.82;
+  letter-spacing:-0.085em;
+  text-align:center;
+  width:100%;
+  transform:translateX(-3px); /* 👈 살짝 왼쪽 보정 */
+}
+
+  /* 2️⃣ 전체 구조를 flex로 변경 */
+  #mwInsidePoswel .mw-inside-panel{
+    z-index:2;
+    margin-top:0;
+    padding:42px 20px 34px;
+    border-radius:24px;
+    background:#f0f0f0;
+
+    display:flex;              /* 👈 변경 */
+    flex-direction:column;     /* 👈 핵심 */
+    gap:18px;
+  }
+
+  /* 3️⃣ left를 풀어서 내부 요소 개별 제어 */
+  #mwInsidePoswel .mw-inside-left{
+    display:contents;  /* 👈 핵심 */
+  }
+
+  /* 4️⃣ 순서 정리 */
+  #mwInsidePoswel .mw-inside-cate{
+    order:1; /* 카테고리 맨 위 */
+
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    gap:24px;
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:0 0 12px;
+    align-items:center;
+
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-x;
+    scrollbar-width:none;
+  }
+
+  #mwInsidePoswel .mw-inside-cate::-webkit-scrollbar{
+    display:none;
+  }
+
+  #mwInsidePoswel .mw-cate-btn{
+    flex:0 0 auto;
+    font-size:15px;
+    line-height:1.35;
+    padding:0 0 7px;
+    white-space:nowrap;
+  }
+
+  /* 이미지 두번째 */
+  #mwInsidePoswel .mw-inside-right{
+    order:2;
+    display:block;
+    width:100%;
+  }
+
+  #mwInsidePoswel .mw-inside-media{
+    width:100%;
+    max-width:100%;
+    height:340px;
+    margin:0;
+    border-radius:22px;
+  }
+
+  /* 텍스트 마지막 */
+  #mwInsidePoswel .mw-inside-copy{
+    order:3;
+    max-width:100%;
+  }
+
+  #mwInsidePoswel .mw-copy-desc{
+    margin:0 0 18px;
+    font-size:20px;
+    line-height:1.45;
+    letter-spacing:-0.045em;
+  }
+
+  #mwInsidePoswel .mw-copy-btn{
+    height:42px;
+    min-width:auto;
+    padding:0 16px;
+    border-radius:11px;
+    font-size:14px;
+  }
+
+  #mwInsidePoswel .mw-inside-overlay{
+    padding:17px 18px;
+  }
+
+  #mwInsidePoswel .mw-inside-label{
+    font-size:14px;
+  }
+
+  #mwInsidePoswel .mw-inside-nav{
+    font-size:14px;
+    gap:9px;
+  }
+
+  #mwInsidePoswel .mw-arrow{
+    font-size:24px;
+  }
+}
+
+@media (max-width:480px){
+  #mwInsidePoswel .mw-inside-title{
+    margin:0 0 -26px 0;
+    font-size:58px;
+    text-align:center;
+    width:100%;
+    transform:translateX(-3px);
+  }
+}
+</style>
+
+<script>
+(function(){
+  function initMwInsidePoswel(){
+    const wrap = document.querySelector('#mwInsidePoswel');
+    if(!wrap) return;
+
+    const buttons = Array.from(wrap.querySelectorAll('.mw-cate-btn'));
+    const titleEl = wrap.querySelector('#mwInsideCurrentTitle');
+    const descEl = wrap.querySelector('#mwInsideCurrentDesc');
+    const imageEl = wrap.querySelector('#mwInsideMainImage');
+    const labelEl = wrap.querySelector('#mwInsideImageLabel');
+    const counterEl = wrap.querySelector('#mwInsideCounter');
+    const mediaEl = wrap.querySelector('.mw-inside-media');
+    const prevBtn = wrap.querySelector('.mw-arrow.prev');
+    const nextBtn = wrap.querySelector('.mw-arrow.next');
+    const linkBtn = wrap.querySelector('.mw-copy-btn');
+
+    if(!buttons.length || !linkBtn) return;
+
+    let currentIndex = 0;
+
+    function updateSlide(index){
+      const item = buttons[index];
+      if(!item) return;
+
+      const title = item.dataset.title || '';
+      const desc = item.dataset.desc || '';
+      const img = item.dataset.img || '';
+      const link = item.dataset.link || '#';
+
+      buttons.forEach(btn => btn.classList.remove('is-active'));
+      item.classList.add('is-active');
+
+      currentIndex = index;
+
+      if(titleEl) titleEl.textContent = title;
+      if(descEl) descEl.textContent = desc;
+      if(labelEl) labelEl.textContent = title;
+      if(imageEl) imageEl.src = img;
+
+      /* ✅ 핵심: 더 알아보기 버튼 링크를 직접 변경 */
+      linkBtn.href = link;
+
+      if(counterEl){
+        counterEl.textContent =
+          String(index + 1).padStart(2, '0') + ' / ' +
+          String(buttons.length).padStart(2, '0');
+      }
+
+      if(mediaEl){
+        mediaEl.classList.add('is-changing');
+        setTimeout(() => {
+          mediaEl.classList.remove('is-changing');
+        }, 360);
+      }
+    }
+
+    buttons.forEach((btn, idx) => {
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        updateSlide(idx);
+
+        const link = btn.dataset.link;
+        if(link){
+          window.location.href = link;
+        }
+      });
+    });
+
+    if(prevBtn){
+      prevBtn.addEventListener('click', function(){
+        updateSlide((currentIndex - 1 + buttons.length) % buttons.length);
+      });
+    }
+
+    if(nextBtn){
+      nextBtn.addEventListener('click', function(){
+        updateSlide((currentIndex + 1) % buttons.length);
+      });
+    }
+
+    updateSlide(0);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initMwInsidePoswel);
+  }else{
+    initMwInsidePoswel();
+  }
+})();
+</script>
